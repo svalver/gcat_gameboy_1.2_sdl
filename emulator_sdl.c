@@ -511,13 +511,15 @@ static void init_ogl()
     /* create a buffer for the screen data */
     img = malloc(160*144*4);
     /* fill it with a nice gradient pattern that's never really seen anymore */
-    for (i = 0; i < 144; i++) {
-	for (j = 0; j < 160; j++) {
-	    img[(i*640)+(j*4)+0] = (i);
-	    img[(i*640)+(j*4)+1] = (j);
-	    img[(i*640)+(j*4)+2] = 0;
-	    img[(i*640)+(j*4)+3] = 255;
-	}
+    for (i = 0; i < 144; i++)
+    {
+        for (j = 0; j < 160; j++)
+        {
+            img[(i*640)+(j*4)+0] = (i);
+            img[(i*640)+(j*4)+1] = (j);
+            img[(i*640)+(j*4)+2] = 0;
+            img[(i*640)+(j*4)+3] = 255;
+        }
     }
 
     glGenTextures(1, &tex);
@@ -692,99 +694,15 @@ void updateController()
     {
         controllerState |= 0x80;
     }
-    /*
-    while( SDL_PollEvent( &event ) || (numIter > 0))
-    {
-        printf ("event.type =%d\n", event.type);
-        if( event.type == SDL_JOYBUTTONDOWN )
-        {
-            // Handle joystick button presses
-            printf ("button= %d \n", event.jbutton.button);
-            
-            if(event.jbutton.button == 9) // start
-            {
-                escapePressed = 1;
-            }
-        }
-        numIter--;
-    }
-     */
-    /*
-    char buf[1];
-    int res;
-    
-    // read scan code from stdin 
-    res = read(0, &buf[0], 1);
-    // keep reading til there's no more
-    while (res >= 0) {
-	switch (buf[0]) {
-	case 0x69: // left arrow
-	    controllerState &= 0xfd;
-	    break;
-	case 0xe9:
-	    controllerState |= 0x02;
-	    break;
-	case 0x6a: // right arrow
-	    controllerState &= 0xfe;
-	    break;
-	case 0xea:
-	    controllerState |= 0x01;
-	    break;
-	case 0x67: // up arrow
-	    controllerState &= 0xfb;
-	    break;
-	case 0xe7:
-	    controllerState |= 0x04;
-	    break;
-	case 0x6c: // down arrow
-	    controllerState &= 0xf7;
-	    break;
-	case 0xec:
-	    controllerState |= 0x08;
-	    break;
-	case 0x01: // escape
-	    break;
-	case 0x81:
-	    escapePressed = 1;
-	    break;
-	case 0x39: // space (start)
-	    controllerState &= 0x7f;
-	    break;
-	case 0xb9:
-	    controllerState |= 0x80;
-	    break;
-	case 0x1c: // enter (select)
-	    controllerState &= 0xbf;
-	    break;
-	case 0x9c:
-	    controllerState |= 0x40;
-	    break;
-	case 0x1e: // A
-	    controllerState &= 0xef;
-	    break;
-	case 0x9e:
-	    controllerState |= 0x10;
-	    break;
-	case 0x1f: // S
-	    controllerState &= 0xdf;
-	    break;
-	case 0x9f:
-	    controllerState |= 0x20;
-	    break;
-	}
-	res = read(0, &buf[0], 1);
-    }
 
- */
     // pass controller state to the emulation
     GB_setJoypadState(controllerState);
 }
-
-/*==============================================================================
+/*==============================================================
  *
  * Main loop/misc
  *
- *============================================================================*/
+ *==========================================================*/
 void usage(char *argv0)
 {
     printf("Usage: %s [-h] <game.gb>\n", argv0);
